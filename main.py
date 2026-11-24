@@ -35,6 +35,8 @@ def main():
         fail(f"line is {len(text)} characters, over the {MAX_CHARS} limit")
     if "\n" in text or "\r" in text:
         fail("line must be a single line")
+    if text != text.strip():
+        fail("line must not start or end with whitespace")
 
     out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR") or "/output"
     os.makedirs(out_dir, exist_ok=True)
